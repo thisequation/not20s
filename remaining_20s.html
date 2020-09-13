@@ -1,0 +1,56 @@
+
+<html>
+<head>
+<title>remaining 20s </title>
+<script type="text/javascript">
+CountDownTimer('01/01/2027 00:00 AM', 'countdown');
+
+function CountDownTimer(dt, id) {
+  var end = new Date(dt);
+
+  var standard = 1000 * 60 * 60 * 24 * 3652
+
+  var _second = 1000;
+  var _minute = _second * 60;
+  var _hour = _minute * 60;
+  var _day = _hour * 24;
+  var timer;
+
+  function showRemaining() {
+    var now = new Date();
+    var distance = end - now;
+
+    if (distance < 0) {
+
+      clearInterval(timer);
+      document.getElementById(id).innerHTML = 'EXPIRED!';
+
+      return;
+    }
+    var days = Math.floor(distance / _day);
+    var hours = Math.floor((distance % _day) / _hour);
+    var minutes = Math.floor((distance % _hour) / _minute);
+    var seconds = Math.floor((distance % _minute) / _second);
+    var remaining = (distance / standard) * 100;
+    var remaining = 100 - remaining;
+
+    document.getElementById(id).innerHTML = remaining ;
+
+    //document.getElementById(id).innerHTML = days + '일 ';
+    //document.getElementById(id).innerHTML += hours + '시간 ';
+    //document.getElementById(id).innerHTML += minutes + '분 ';
+    //document.getElementById(id).innerHTML += seconds + '초';
+
+
+  }
+
+  timer = setInterval(showRemaining, 1);
+}
+
+</script>
+</head>
+<body>
+  <h1> 이미 지나간 20대는 <div style='display:inline;' id="countdown"></div> % </h1>
+</body>
+
+</html>
